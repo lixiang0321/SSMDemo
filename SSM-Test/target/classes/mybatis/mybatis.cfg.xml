@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 开启二级缓存  注意此文件中并非所哟丶文件都会使用二级缓存，不适用二级缓存的，追加属性
+    useCache="false"-->
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+    <!-- 指定扫描某包下面的类，类名称为别名 -->
+    <typeAliases>
+        <package name="www.ssm.pojo"/>
+    </typeAliases>
+    <!-- 引入需要操作的映射文件
+        由于我抛弃了传统的dao→daoImpl的方式进行开发，进行使用
+        xml映射文件的方式进行处理。但是这样做，我就必须加载全部的
+        配置文件，但是开发中配置文件的数量是非常多的。所以下面我将
+        进行注释保留，使用Spring的机制进行加载。
+
+        在Spring-mybatis中进行目录的设置
+
+        如果后期又学习的需要也可以进行配置
+        <mappers>
+            <mapper resource="www/ssm/pojo/mapper/Student.xml"/>
+        </mappers>
+     -->
+
+</configuration>

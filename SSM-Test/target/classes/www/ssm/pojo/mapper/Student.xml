@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!-- 注意:如果在这里面使用和接口名称一样的地址，必须保证这面配置的
+     id名称和接口中方法的名称一致，并且地址无问题，否则将会出现
+     一系列的问题 并且需要在Spring-mybaits中增加映射转换的处理  -->
+<mapper namespace="www.ssm.dao.IStudentDao">
+<!--    <resultMap id="StudentMap" type="Student">-->
+<!--        <id column="s_sid" property="sid"/>-->
+<!--    </resultMap>-->
+    <insert id="doCreate" parameterType="Student">
+        /*
+        keyProperty="sid" keyColumn="sid"
+        useGeneratedKeys="true"
+        */
+        /*
+            keyProperty VO对应的属性名称
+            keyColumn 数据表主键
+            useGeneratedKeys 主键生成
+        */
+        INSERT INTO student(sname) values(#{sname});
+        <selectKey keyColumn="sid" keyProperty="sid" order="AFTER"
+                   resultType="java.lang.Long">
+            /*
+                注意Mysql order="AFTER"
+                Oracle使用的为序列模式，为BEFORE
+            */
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <insert id="doCreateB" parameterType="Student" keyProperty="sid" keyColumn="sid" useGeneratedKeys="true">
+        INSERT  INTO student VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">,</trim>
+    </insert>
+
+    <update id="doEdit" parameterType="Student">
+            UPDATE  student SET sname = ${sname} WHERE sid = #{sid} ;
+    </update>
+
+    <delete id="doRemove" parameterType="java.lang.Long">
+        DELETE FROM student where sid = ${_parameter}
+    </delete>
+    <select id="findById" parameterType="java.lang.Long" resultType="Student">
+        SELECT sid,sname FROM student where sid=${_parameter}
+    </select>
+    <select id="findAll" resultType="Student">
+        SELECT sid,sname FROM student
+    </select>
+    <select id="findSplit" resultType="Student" parameterType="java.util.Map">
+        SELECT sid,sname FROM student
+        <if test="column != null and keyword != null and column != &quot;&quot; and keyword != &quot;&quot;">
+            WHERE ${column} LIKE #{keyword}
+        </if>
+        LIMIT #{start},#{lineSize} ;
+    </select>
+    <select id="getAllCount" resultType="java.lang.Long" parameterType="java.util.Map">
+        SELECT COUNT(*) FROM student
+        <if test="column != null and keyword != null and column != &quot;&quot; and keyword != &quot;&quot;">
+            WHERE ${column} LIKE #{keyword}
+        </if>
+    </select>
+    <select id="findAllTitle" resultType="Student">
+        SELECT sid,sname FROM student;
+    </select>
+</mapper>
