@@ -33,7 +33,7 @@
         <mybatis.version>3.5.1</mybatis.version>
         <mybatisSpring.version>2.0.1</mybatisSpring.version>
         <ehcache.version>2.10.6</ehcache.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <mysql.version>5.1.47</mysql.version>
         <druid.version>1.1.17</druid.version>
         <commons-DBCP.version>1.4</commons-DBCP.version>
