@@ -29,7 +29,7 @@
 
         <!-- 定义需求组件 -->
         <!-- 定义各个组件的版本号 -->
-        <spring.version>5.1.7.RELEASE</spring.version>
+        <spring.version>5.3.19</spring.version>
         <mybatis.version>3.5.1</mybatis.version>
         <mybatisSpring.version>2.0.1</mybatisSpring.version>
         <ehcache.version>2.10.6</ehcache.version>
